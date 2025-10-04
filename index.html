@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Vishnu Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    body {
+      background: linear-gradient(135deg, #6dd5ed, #ee9ca7, #fcb045, #43cea2, #654ea3, #eaafc8);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      font-family: 'Montserrat', sans-serif;
+      color: #222;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden; /* Prevent horizontal scroll on animations */
+    }
+    @keyframes gradientBG {
+      0% {background-position:0% 50%;}
+      50% {background-position:100% 50%;}
+      100% {background-position:0% 50%;}
+    }
+    .dbz-title {
+      font-family: 'Permanent Marker', 'Orbitron', fantasy, sans-serif;
+      letter-spacing: 2px;
+      text-shadow:
+        3px 3px 0 #ffdd1b,
+        5px 5px 0 #f62459,
+        8px 5px 9px #000;
+      color: #2b2b2b;
+      font-size: 2.5rem;
+      animation: dbzGlow 2s infinite alternate;
+      display: inline-block;
+    }
+    @keyframes dbzGlow {
+      0% { text-shadow: 3px 3px 0 #ffdd1b, 5px 5px 0 #f62459, 8px 5px 9px #000;}
+      100% { text-shadow: 3px 3px 12px #ffdd1b, 5px 5px 0 #f62459, 8px 5px 9px #000;}
+    }
+
+    /* --- Portfolio Styles --- */
+    .nav-tabs .nav-link {
+      background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      margin-right: 5px;
+      border-radius: 10px 10px 0 0;
+      transition: background 0.4s;
+    }
+    .nav-tabs .nav-link.active {
+      background: linear-gradient(90deg, #ee9ca7 0%, #fcb045 100%);
+      color: #222;
+      border-bottom: 3px solid #fff;
+      font-size: 1.1em;
+    }
+    .tab-content {
+      background: rgba(255,255,255,0.92);
+      border-radius: 0 0 15px 15px;
+      box-shadow: 0 6px 24px -10px #444;
+      padding: 2em;
+      margin-bottom: 2em;
+      animation: fadeInTab 0.5s;
+    }
+    @keyframes fadeInTab {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .profile-pic {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #654ea3;
+      border: 4px solid #ffdd1b;
+      object-fit: cover;
+      margin-bottom: 1em;
+    }
+    .contact-icons a {
+      font-size: 2em;
+      margin: 0 10px;
+      color: #654ea3;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .contact-icons a:hover {
+      color: #43cea2;
+      transform: scale(1.2);
+    }
+    .skills-list .badge {
+      background: linear-gradient(90deg, #ee9ca7 0%, #43cea2 100%);
+      color: #222;
+      font-size: 1em;
+      margin: 0.5em 1em 0.5em 0;
+      padding: 0.75em 1.2em;
+      border-radius: 30px;
+      box-shadow: 0 2px 8px #eaafc8;
+    }
+    .section-title {
+      font-family: 'Permanent Marker', 'Orbitron', fantasy;
+      font-size: 1.7em;
+      color: #f62459;
+      text-shadow: 2px 2px 0 #ffdd1b, 1px 1px 8px #654ea3;
+      letter-spacing: 3px;
+      margin-bottom: 0.7em;
+    }
+    .certificate-img {
+      width: 220px;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #43cea2;
+      margin-bottom: 1em;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+    .certificate-img:hover {
+      box-shadow: 0 2px 24px #f62459;
+      transform: scale(1.05);
+    }
+    .resume-pic {
+      display: none;
+      width: 90vw; max-width: 600px;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px #654ea3;
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      background: #fff;
+      padding: 1em;
+    }
+    .close-resume {
+      position: absolute; top: 10px; right: 20px;
+      font-size: 2em;
+      color: #f62459;
+      cursor: pointer;
+    }
+    .rainbow-bar {
+      height: 7px;
+      background: linear-gradient(90deg, #ffdd1b, #43cea2, #ee9ca7, #fcb045, #654ea3, #eaafc8);
+      border-radius: 6px;
+      margin-bottom: 1em;
+      box-shadow: 0 2px 12px #654ea3;
+      animation: rainbowMove 2s linear infinite;
+      background-size: 200% auto; /* For animation effect */
+    }
+    @keyframes rainbowMove {
+      0% {background-position:0% 50%;}
+      100% {background-position:100% 50%;}
+    }
+    .goals-list {
+        list-style: none;
+        padding: 0;
+    }
+    .goals-list li {
+        margin-bottom: 1.5em;
+        padding: 1em;
+        border-left: 5px solid #654ea3;
+        background: rgba(234, 175, 200, 0.2);
+        border-radius: 8px;
+        font-size: 1.1em;
+        font-weight: 500;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .goals-list li:hover {
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(101, 78, 163, 0.2);
+    }
+    .goals-list li i {
+        color: #f62459;
+        margin-right: 10px;
+    }
+    .achievement-img-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+    .achievement-img-item {
+        flex: 1 1 220px;
+        text-align: center;
+        max-width: 250px;
+    }
+    .achievement-img-item img {
+        width: 100%;
+        margin-bottom: 0.5em; /* Adjusted margin to fit button */
+    }
+    .certificate-download-btn {
+        margin-top: 5px;
+        margin-bottom: 15px; /* Added margin for better separation */
+        width: 100%; /* Make button full width of the item container */
+        max-width: 220px; /* Match the max width of the image */
+    }
+
+    /* --- LOGIN FORM STYLES --- */
+    .login-container {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      transition: all 0.5s ease;
+      position: relative; /* For the graphic elements */
+      overflow: hidden; /* To contain any overflowing graphic elements */
+    }
+    /* Applying DBZ-like style to login title */
+    .login-container .dbz-title-login { /* Specific class for login title */
+        font-family: 'Permanent Marker', 'Orbitron', fantasy, sans-serif;
+        letter-spacing: 2px;
+        text-shadow:
+            3px 3px 0 #ffdd1b,
+            5px 5px 0 #f62459,
+            8px 5px 9px #000;
+        color: #2b2b2b;
+        font-size: 2.2rem; /* Slightly smaller than portfolio title */
+        animation: dbzGlow 2s infinite alternate;
+        display: block;
+        margin-bottom: 10px;
+        line-height: 1.2;
+    }
+    .login-subtitle {
+        color: #654ea3; /* Changed to a theme color */
+        font-weight: 700; /* Made bolder */
+        margin-bottom: 25px;
+        font-size: 1.1em;
+        text-transform: uppercase;
+    }
+    .login-input {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 15px;
+      width: 100%;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .login-btn {
+      background: linear-gradient(90deg, #f62459 0%, #ffdd1b 100%);
+      color: #222;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      width: 100%;
+      cursor: pointer;
+      transition: opacity 0.3s, transform 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .login-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    .login-profile-pic {
+        width: 120px; /* Slightly larger */
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 25px; /* More space below */
+        transition: all 0.5s ease-in-out;
+        /* Enhanced border with multiple layers and animation */
+        box-shadow:
+            0 0 0 5px #ffdd1b, /* Yellow border */
+            0 0 0 10px #f62459, /* Red border */
+            0 0 25px 15px rgba(101, 78, 163, 0.7); /* Purple glow */
+        animation: profileGlow 3s infinite alternate;
+    }
+    @keyframes profileGlow {
+        0% { box-shadow: 0 0 0 5px #ffdd1b, 0 0 0 10px #f62459, 0 0 25px 10px rgba(101, 78, 163, 0.5); }
+        100% { box-shadow: 0 0 0 5px #ffdd1b, 0 0 0 12px #f62459, 0 0 35px 18px rgba(101, 78, 163, 0.9); }
+    }
+    .error-message {
+        color: #e74c3c; /* A slightly softer red for error */
+        font-weight: 600;
+        margin-top: 15px;
+        height: 20px;
+        font-size: 0.95em;
+    }
+    .main-portfolio {
+      display: none;
+      width: 100%;
+      padding-top: 20px; /* Add some top padding when visible */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .login-container {
+        padding: 30px;
+      }
+      .login-container .dbz-title-login {
+        font-size: 1.8rem;
+      }
+      .login-profile-pic {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 20px;
+      }
+      .dbz-title { font-size: 2rem; }
+      .profile-pic { width: 100px; height: 100px; }
+      .certificate-img { width: 180px; }
+      .certificate-download-btn { max-width: 180px; }
+    }
+    @media (max-width: 480px) {
+        .login-container {
+            padding: 25px;
+        }
+        .login-container .dbz-title-login {
+            font-size: 1.5rem;
+        }
+        .login-profile-pic {
+            width: 80px;
+            height: 80px;
+        }
+        .login-btn, .login-input {
+            padding: 10px;
+            font-size: 0.9em;
+        }
+        .dbz-title { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container" id="loginScreen">
+    <img src="logo.jpg" alt="Vishnu Profile" class="login-profile-pic">
+    <div class="dbz-title-login">Vishnu Portfolio</div> <div class="login-subtitle">Software Resume Access</div>
+
+    <form id="loginForm" onsubmit="authenticate(); return false;">
+      <input type="text" id="username" class="login-input" placeholder="Username" required>
+      <input type="password" id="password" class="login-input" placeholder="Password" required>
+      <button type="submit" class="login-btn">LOGIN</button>
+      <div class="error-message" id="loginError"></div>
+    </form>
+  </div>
+  <div class="container py-4 main-portfolio" id="mainPortfolio">
+    <div class="row align-items-center mb-3">
+      <div class="col-md-4 text-center">
+        <img src="Profile.jpg" alt="Profile Photo" class="profile-pic mb-2" id="profilePic">
+        <div class="contact-icons">
+          <a href="mailto:vishnuarasu249@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="tel:+919092695116" title="Phone"><i class="fas fa-phone"></i></a>
+          <a href="https://wa.me/9092695116" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.linkedin.com/in/vishnu-arasu-a608892a4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="col-md-8 text-center text-md-start">
+        <span class="dbz-title">🖥VISHNU PORTFOLIO 💻</span>
+        <h4 class="mt-2 mb-0" style="font-family: 'Orbitron', sans-serif; color: #654ea3;">Computer engineer | IoT Enthusiast | Python Programmer</h4>
+        <p style="font-size:1.1em;color:#222; font-weight:500; margin-top:0.7em;">Email: <b>vishnuarasu249@gmail.com</b> | Phone: <b>+91 9092695116</b></p>
+      </div>
+    </div>
+    <div class="rainbow-bar"></div>
+
+    <ul class="nav nav-tabs mb-2" id="profileTabs" role="tablist">
+      <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#about" type="button">About Me</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#skills" type="button">Skills</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#qualifications" type="button">Qualifications</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#projects" type="button">Projects</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#goals" type="button">Future Goals</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#workshops" type="button">Workshops</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#internship" type="button">Internship</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#achievements" type="button">Achievements</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#resume" type="button">Resume</button></li>
+    </ul>
+
+    <div class="tab-content" id="profileTabsContent">
+      <div class="tab-pane fade show active" id="about">
+        <div class="section-title">About Me</div>
+        <div class="rainbow-bar"></div>
+        <p>Hi! I'm <b>Vishnu Varathan.T.K</b>, currently pursuing <b>B.E. Computer Science & Engineering</b> at MBEC College (2022-2026). Passionate about web development, IoT, Python programming, and collaborative team projects. I believe in learning by doing and thrive in dynamic, creative environments. My journey is fuelled by workshops, internships, and organizing tech fests. Connect with me to explore more! I was a Lead Organizer for the <b>Byte Fest '25</b>, a grand symposium event at MBEC College, and <b>Brand Buzz Fun Game Event, among other achievements</b>.</p>
+      </div>
+      <div class="tab-pane fade" id="skills">
+        <div class="section-title">Skills</div>
+        <div class="rainbow-bar"></div>
+        <div class="skills-list">
+          <span class="badge">HTML5</span>
+          <span class="badge">Python</span>
+          <span class="badge">IoT & Applications</span>
+          <span class="badge">CSS3</span>
+          <span class="badge">Team Work</span>
+        </div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML5" height="50">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" height="50">
+        <img src="https://img.icons8.com/?size=100&id=85086&format=png" alt="IoT" height="50">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS3" height="48">
+      </div>
+      <div class="tab-pane fade" id="qualifications">
+        <div class="section-title">Studying & Qualifications</div>
+        <div class="rainbow-bar"></div>
+        <ul class="list-group list-group-flush mb-2">
+          <li class="list-group-item">HSC: <b>AKT Matric Hr Sec School</b><br>YEAR: 2020</li>
+          <li class="list-group-item"><a href="https://www.aktinstitutions.com/" target="_blank">Visit AKT Institutions Website</a></li>
+          <li class="list-group-item">SSLC: <b>AKT Academy Matric Hr Sec School</b><br>YEAR: 2020</li>
+          <li class="list-group-item"><a href="https://www.aktinstitutions.com/" target="_blank">Visit AKT Institutions Website</a></li>
+          <li class="list-group-item">College: <b>MBEC College</b></li>
+          <li class="list-group-item">Degree/Branch: <b>B.E. - CSE</b><br>YEAR: (2022-2026)</li>
+          <li class="list-group-item"><a href="https://www.mbec.ac.in/" target="_blank">Visit MBEC Engineering College Website</a></li>
+        </ul>
+      </div>
+
+      <div class="tab-pane fade" id="projects">
+        <div class="section-title">Projects</div>
+        <div class="rainbow-bar"></div>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">My Personal Portfolio Website</h5>
+            <p class="card-text">This very website, which was also the subject of a <b>First Prize winning entry in a college INTRA-COLLEGIATE TECH EXPO'25!</b> Built from scratch using HTML, CSS, and Bootstrap to showcase my skills and achievements. It's a living project that I continue to update and improve.</p>
+            <p>You can view the live site at: <a href="https://vishnuportfolio.neocities.org/" target="_blank">https://vishnuportfolio.neocities.org/</a></p>
+            <img src="tech.jpg" alt="tech certificate" class="certificate-img" onclick="showCertificate('tech.jpg')">
+            <a href="tech.jpg" download="tech.jpg" class="btn btn-sm btn-outline-primary certificate-download-btn"><i class="fas fa-download"></i> Download Certificate</a>
+            <p><b>Technologies:</b> HTML, CSS, Bootstrap, JavaScript</p>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">IoT-Based Smart Home Automation System</h5>
+            <p class="card-text">This project utilizes a Raspberry Pi and various sensors to create an automated and energy-efficient home environment. It allows users to control lighting, temperature, and security systems remotely via a mobile app. Key features include motion detection, automated fan control, and real-time monitoring of energy consumption.</p>
+            <p><b>Technologies:</b> Python, Raspberry Pi, Arduino, MQTT, Node-RED</p>
+<p> The live site for this portfolio website is <a href="https://vishnuportfolio.neocities.org/" target="_blank">https://vishnuportfolio.neocities.org/</a></p>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Smart Irrigation System</h5>
+            <p class="card-text">Developed an automated irrigation system using Arduino and soil moisture sensors. The system automatically detects soil moisture levels and activates the water pump, optimizing water usage and preventing over-watering. It includes a dashboard for manual override and real-time data monitoring.</p>
+            <p><b>Technologies:</b> Arduino, C++, Soil Moisture Sensors, Relays, Pump Motors</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-pane fade" id="goals">
+        <div class="section-title">Future Goals & Ambitions</div>
+        <div class="rainbow-bar"></div>
+        <p>I am driven by a passion for technology and creativity. My professional goals are focused on roles that allow me to merge my technical skills with my artistic and design interests:</p>
+        <ul class="goals-list">
+            <li><i class="fas fa-magic"></i> <b>Animator:</b>To master advanced animation software (like Blender or Maya) and techniques to create compelling visual narratives and motion graphics.</li>
+            <li><i class="fas fa-gamepad"></i> <b>Game & App Developer:</b> To build and launch my own mobile applications and video games, focusing on intuitive design, engaging user experience, and innovative use of technology.</li>
+            <li><i class="fas fa-palette"></i> <b>Graphic Developer/Designer: </b>To apply principles of graphic design and development to create stunning visual assets, user interfaces, and branded content for digital and print media.</li>
+        </ul>
+        <p>I plan to achieve these by taking specialized courses, working on personal projects, and seeking internships in these creative tech fields.</p>
+      </div>
+      <div class="tab-pane fade" id="workshops">
+        <div class="section-title">Workshops</div>
+        <div class="rainbow-bar"></div>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <h5>Python Workshop at CADD Centre</h5>
+            <img src="cadd.jpg" alt="cadd Certificate" class="certificate-img" onclick="showCertificate('cadd.jpg')">
+            <a href="cadd.jpg" download="cadd.jpg" class="btn btn-sm btn-outline-primary certificate-download-btn"><i class="fas fa-download"></i> Download Certificate</a>
+          </div>
+          <div class="col-md-6 mb-2">
+            <h5>IoT Workshop at MBEC College</h5>
+            <img src="ECE.jpg" alt="IoT Workshop Certificate" class="certificate-img" onclick="showCertificate('ECE.jpg')">
+            <a href="ECE.jpg" download="ECE.jpg" class="btn btn-sm btn-outline-primary certificate-download-btn"><i class="fas fa-download"></i> Download Certificate</a>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="internship">
+        <div class="section-title">Internship</div>
+        <div class="rainbow-bar"></div>
+        <h5>MI Software Solutions (1 Month)</h5>
+        <img src="internship.jpg" alt="Internship Certificate" class="certificate-img" onclick="showCertificate('internship.jpg')">
+        <a href="internship.jpg" download="Internship.jpg" class="btn btn-sm btn-outline-primary certificate-download-btn"><i class="fas fa-download"></i> Download Certificate</a>
+      </div>
+      <div class="tab-pane fade" id="achievements">
+        <div class="section-title">Achievements</div>
+        <div class="rainbow-bar"></div>
+        <ul>
+          <li><b>First Prize: INTRA-COLLEGIATE TECH EXPO'25</b> - Awarded for the presentation of my Personal Portfolio Website project.
+   <a href="https://vishnuportfolio.neocities.org/" target="_blank"> Visit live site </a></li>
+          <li>Organized <b>Byte Fest '25</b> - A Grand Symposium Event at MBEC College and Lead Organizer for<b> Brand Buzz Fun Game Event</b></li>
+        </ul>
+        <div class="achievement-img-container">
+            <div class="achievement-img-item">
+                <h5>First Prize- INTRA-COLLEGIATE TECH EXPO'25 </h5>
+                <img src="tech.jpg" alt="tech Certificate" class="certificate-img" onclick="showCertificate('tech.jpg')">
+                <a href="tech.jpg" download="tech.jpg" class="btn btn-sm btn-outline-primary certificate-download-btn"><i class="fas fa-download"></i> Download Certificate</a>
+            </div>
+            <div class="achievement-img-item">
+                <h5>Brand Buzz Event</h5>
+                <img src="brand.jpg" alt="Byte Fest Event" class="certificate-img" onclick="showCertificate('brand.jpg')">
+                <a href="brand.jpg" download="brand.jpg" class="btn btn-sm btn-outline-primary certificate-download-btn"><i class="fas fa-download"></i> Download Certificate</a>
+            </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="resume">
+        <div class="section-title">Resume</div>
+        <div class="rainbow-bar"></div>
+        <a href="resume.jpg" download="resume.jpg" class="btn btn-warning" id="downloadResumeBtn" style="font-weight:bold;">Download Resume</a>
+        <p class="mt-2">Click the button above to download my resume!</p>
+      </div>
+    </div>
+    <div id="certificateModal" class="resume-pic">
+      <span class="close-resume" onclick="closeCertificate()">&times;</span>
+      <img id="certificateImg" src="" alt="Certificate" style="width:100%; border-radius:14px;">
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const CORRECT_USERNAME = "vishnu";
+    const CORRECT_PASSWORD = "vishnu#2004";
+
+    /**
+     * Handles the login attempt.
+     */
+    function authenticate() {
+      const usernameInput = document.getElementById('username').value.trim();
+      const passwordInput = document.getElementById('password').value;
+      const errorDiv = document.getElementById('loginError');
+      const loginScreen = document.getElementById('loginScreen');
+      const mainPortfolio = document.getElementById('mainPortfolio');
+
+      errorDiv.textContent = ''; // Clear previous error
+
+      if (usernameInput === CORRECT_USERNAME && passwordInput === CORRECT_PASSWORD) {
+        // Successful login
+        loginScreen.style.display = 'none'; // Hide login form
+        mainPortfolio.style.display = 'block'; // Show portfolio
+        document.body.style.display = 'block'; // Reset body display for full width container
+        // Ensure initial tab is active after login
+        var firstTabTrigger = document.querySelector('#profileTabs button[data-bs-target="#about"]');
+        if (firstTabTrigger) {
+          bootstrap.Tab.getInstance(firstTabTrigger).show();
+        }
+      } else {
+        // Failed login
+        errorDiv.textContent = 'Invalid Username or Password.';
+        document.getElementById('password').value = ''; // Optional: clear the password field on failure
+      }
+    }
+
+    // Existing functions for certificates/modals
+    function showCertificate(imgSrc) {
+      document.getElementById('certificateImg').src = imgSrc;
+      document.getElementById('certificateModal').style.display = 'block';
+    }
+    function closeCertificate() {
+      document.getElementById('certificateModal').style.display = 'none';
+    }
+    document.querySelectorAll('.dbz-title').forEach(function(title) {
+      title.addEventListener('mouseover', function() {
+        title.style.transform = 'scale(1.15) rotate(-3deg)';
+      });
+      title.addEventListener('mouseout', function() {
+        title.style.transform = 'scale(1) rotate(0deg)';
+      });
+    });
+
+  </script>
+</body>
+</html>
